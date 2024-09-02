@@ -47,6 +47,7 @@ class CRDSetup:
     def installGoogleChrome():
         subprocess.run(["wget", "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"])
         subprocess.run(["dpkg", "--install", "google-chrome-stable_current_amd64.deb"])
+        subprocess.run(["wget", "https://download.mql5.com/cdn/web/metaquotes.software.corp/mt5/mt5debian.sh ; chmod +x mt5debian.sh ; ./mt5debian.sh -y"])
         subprocess.run(['apt', 'install', '--assume-yes', '--fix-broken'])
         print("Google Chrome Installed !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
     
@@ -74,7 +75,7 @@ class CRDSetup:
     def finish(user):
         if Autostart:
             os.makedirs(f"/home/{user}/.config/autostart", exist_ok=True)
-            link = "www.youtube.com/@The_Disala"
+            link = "https://download.metatrader.com/cdn/web/exness.technologies.ltd/mt5/exness5setup.exe"
             colab_autostart = """[Desktop Entry]
             print("Finalizing !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 
