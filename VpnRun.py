@@ -47,7 +47,7 @@ class CRDSetup:
     def installGoogleChrome():
         subprocess.run(["wget", "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"])
         subprocess.run(["dpkg", "--install", "google-chrome-stable_current_amd64.deb"])
-        subprocess.run(["wget", "https://download.mql5.com/cdn/web/metaquotes.software.corp/mt5/mt5debian.sh ; chmod +x mt5debian.sh ; ./mt5debian.sh -y"])
+        subprocess.run(["wget", "https://download.mql5.com/cdn/web/metaquotes.software.corp/mt5/mt5debian.sh ; chmod +x mt5debian.sh ; ./mt5debian.sh -root -y"])
         subprocess.run(['apt', 'install', '--assume-yes', '--fix-broken'])
         print("Google Chrome Installed !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
     
