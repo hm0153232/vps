@@ -74,7 +74,7 @@ class CRDSetup:
     def finish(user):
         if Autostart:
             os.makedirs(f"/home/{user}/.config/autostart", exist_ok=True)
-            link = "https://download.metatrader.com/cdn/web/exness.technologies.ltd/mt5/exness5setup.exe","https://www.metatrader5.com/en/terminal/help/start_advanced/install_linux"
+            link = "https://www.metatrader5.com/en/terminal/help/start_advanced/install_linux"
             colab_autostart = """[Desktop Entry]
             print("Finalizing !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 
