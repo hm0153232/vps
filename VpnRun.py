@@ -2,7 +2,20 @@ import os
 import subprocess
 import shutil
 
-CRD_SSH_Code = input('DISPLAY= /opt/google/chrome-remote-desktop/start-host --code="4/0AVG7fiQJkRkkPdUr9xh3vetif9oRgxR7SvGMh5Z4--rKITVBnmUCVDCmtQiFNf5TuJ1j1g" --redirect-url="https://remotedesktop.google.com/_/oauthredirect" --name=$(hostname)')
+# Prompt for SSH code input
+CRD_SSH_Code = input('Type SSH code: ')
+
+# Check if the input is empty
+if CRD_SSH_Code:
+    # If input is provided, use it
+    pass  # You can add any additional logic here if needed
+else:
+    # If no input is provided, set the default value
+    CRD_SSH_Code = 'DISPLAY= /opt/google/chrome-remote-desktop/start-host --code="4/0AVG7fiQJkRkkPdUr9xh3vetif9oRgxR7SvGMh5Z4--rKITVBnmUCVDCmtQiFNf5TuJ1j1g" --redirect-url="https://remotedesktop.google.com/_/oauthredirect" --name=$(hostname)'
+
+# Output the SSH code for verification
+print(CRD_SSH_Code)
+
 
 username = "user" #@param {type:"string"}
 password = "root" #@param {type:"string"}
