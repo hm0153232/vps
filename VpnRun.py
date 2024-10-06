@@ -1,9 +1,7 @@
 import os
 import subprocess
 import shutil
-
 import threading
-
 # Function to get input
 def get_input():
     global CRD_SSH_Code
