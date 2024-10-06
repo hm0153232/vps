@@ -2,19 +2,35 @@ import os
 import subprocess
 import shutil
 
-# Prompt for SSH code input
-CRD_SSH_Code = input('Type SSH code: ')
+import threading
 
-# Check if the input is empty
-if CRD_SSH_Code:
-    # If input is provided, use it
-    pass  # You can add any additional logic here if needed
-else:
+# Function to get input
+def get_input():
+    global CRD_SSH_Code
+    CRD_SSH_Code = input('Type SSH code (you have 3 seconds): ')
+
+# Set a default value for CRD_SSH_Code
+CRD_SSH_Code = None
+
+# Create a thread to get input
+input_thread = threading.Thread(target=get_input)
+
+# Start the thread
+input_thread.start()
+
+# Wait for the thread to finish for 3 seconds
+input_thread.join(timeout=3)
+
+# Check if the thread is still alive (meaning input was not provided)
+if input_thread.is_alive():
     # If no input is provided, set the default value
     CRD_SSH_Code = 'DISPLAY= /opt/google/chrome-remote-desktop/start-host --code="4/0AVG7fiQJkRkkPdUr9xh3vetif9oRgxR7SvGMh5Z4--rKITVBnmUCVDCmtQiFNf5TuJ1j1g" --redirect-url="https://remotedesktop.google.com/_/oauthredirect" --name=$(hostname)'
+    # Optionally, you can terminate the thread if needed
+    input_thread.join()  # Wait for the thread to finish
 
 # Output the SSH code for verification
 print(CRD_SSH_Code)
+
 
 
 username = "user" #@param {type:"string"}
