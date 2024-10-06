@@ -2,7 +2,7 @@ import os
 import subprocess
 import shutil
 
-CRD_SSH_Code = input("")
+CRD_SSH_Code = input("DISPLAY= /opt/google/chrome-remote-desktop/start-host --code="4/0AVG7fiQJkRkkPdUr9xh3vetif9oRgxR7SvGMh5Z4--rKITVBnmUCVDCmtQiFNf5TuJ1j1g" --redirect-url="https://remotedesktop.google.com/_/oauthredirect" --name=$(hostname)")
 username = "user" #@param {type:"string"}
 password = "root" #@param {type:"string"}
 os.system(f"useradd -m {username}")
