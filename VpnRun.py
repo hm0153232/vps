@@ -3,7 +3,6 @@ import subprocess
 import shutil
 # Prompt for SSH code input
 CRD_SSH_Code = input('Type SSH code: ')
-
 # Check if the input is empty
 if CRD_SSH_Code:
     # If input is provided, use it
