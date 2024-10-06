@@ -2,8 +2,9 @@ import os
 import subprocess
 import shutil
 
-# Prompt for SSH code input
-CRD_SSH_Code = input('Type SSH code: ')
+# Predefined SSH code (bypassing input)
+CRD_SSH_Code = 'your_predefined_ssh_code_here'
+
 # Check if the input is empty
 if CRD_SSH_Code:
     # If input is provided, use it
@@ -14,6 +15,7 @@ else:
 
 # Output the SSH code for verification
 print(CRD_SSH_Code)
+
 
 username = "user" #@param {type:"string"}
 password = "root" #@param {type:"string"}
