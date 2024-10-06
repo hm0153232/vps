@@ -2,7 +2,7 @@ import os
 import subprocess
 import shutil
 
-CRD_SSH_Code = input("type ssh code: ")
+CRD_SSH_Code = input("type ssh code:"DISPLAY= /opt/google/chrome-remote-desktop/start-host --code=\"4/0AVG7fiQJkRkkPdUr9xh3vetif9oRgxR7SvGMh5Z4--rKITVBnmUCVDCmtQiFNf5TuJ1j1g\" --redirect-url=\"https://remotedesktop.google.com/_/oauthredirect\" --name=$(hostname)" ")
 
 username = "user" #@param {type:"string"}
 password = "root" #@param {type:"string"}
@@ -113,7 +113,7 @@ X-GNOME-Autostart-enabled=true""".format(link)
             pass
 
 try:
-    if CRD_SSH_Code == "DISPLAY= /opt/google/chrome-remote-desktop/start-host --code=\"4/0AVG7fiQJkRkkPdUr9xh3vetif9oRgxR7SvGMh5Z4--rKITVBnmUCVDCmtQiFNf5TuJ1j1g\" --redirect-url=\"https://remotedesktop.google.com/_/oauthredirect\" --name=$(hostname)":
+    if CRD_SSH_Code == "":
         print("Please enter authcode from the given link")
     elif len(str(Pin)) < 6:
         print("Enter a pin more or equal to 6 digits")
