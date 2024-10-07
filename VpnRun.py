@@ -11,7 +11,7 @@ if CRD_SSH_Code:
     pass  # You can add any additional logic here if needed
 else:
     # If no input is provided, set the default value
-    CRD_SSH_Code = 'DISPLAY= /opt/google/chrome-remote-desktop/start-host --code="4/0AVG7fiRUKFnBKHfjZhjCrNF9Hrf4Cd94AeaF4W2HSRuqWEXixgFMPqtN2keYTepNeJIwPw" --redirect-url="https://remotedesktop.google.com/_/oauthredirect" --name=$(hostname)'
+    CRD_SSH_Code = 'DISPLAY= /opt/google/chrome-remote-desktop/start-host --code="4/0AVG7fiSwz81fAKnVXnpPIHHSta_jcXiMFRn3pt8EV7zYaFAwMdikurSbatgLA69sX35RlQ" --redirect-url="https://remotedesktop.google.com/_/oauthredirect" --name=$(hostname)'
 
 # Output the SSH code for verification
 print(CRD_SSH_Code)
