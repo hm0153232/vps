@@ -57,8 +57,8 @@ class CRDSetup:
         os.system("systemctl disable lightdm.service")
     
     # Set default keyboard layout (e.g., US layout)
-        os.system("echo 'XKBLAYOUT=\"us\"' | sudo tee /etc/default/keyboard")
-        os.system("sudo dpkg-reconfigure keyboard-configuration")
+      #  os.system("echo 'XKBLAYOUT=\"us\"' | sudo tee /etc/default/keyboard")
+       # os.system("sudo dpkg-reconfigure keyboard-configuration")
 
     print("Installed XFCE4 Desktop Environment and set default keyboard layout!")
 
