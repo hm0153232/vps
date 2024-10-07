@@ -1,6 +1,7 @@
 import os
 import subprocess
 import shutil
+
 # Predefined SSH code (bypassing input)
 CRD_SSH_Code = 'your_predefined_ssh_code_here'
 
@@ -14,7 +15,6 @@ else:
 
 # Output the SSH code for verification
 print(CRD_SSH_Code)
-
 
 username = "user" #@param {type:"string"}
 password = "root" #@param {type:"string"}
@@ -42,20 +42,17 @@ class CRDSetup:
         subprocess.run(['wget', 'https://dl.google.com/linux/direct/chrome-remote-desktop_current_amd64.deb'])
         subprocess.run(['dpkg', '--install', 'chrome-remote-desktop_current_amd64.deb'])
         subprocess.run(['apt', 'install', '--assume-yes', '--fix-broken'])
-        print("Chrome Remoted Desktop Installed !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        print("Chrome Remote Desktop Installed!")
+
     @staticmethod
     def installDesktopEnvironment():
         os.environ["DEBIAN_FRONTEND"] = "noninteractive"  # Set noninteractive mode
 
         # Preconfigure keyboard settings to avoid prompts
-        os.system("echo 'keyboard-configuration keyboard-configuration/layout select us' | sudo debconf-set-selections")
-        os.system("echo 'keyboard-configuration keyboard-configuration/model select Generic 101-key PC' | sudo debconf-set-selections")
-        os.system("echo 'keyboard-configuration keyboard-configuration/variant select English (US)' | sudo debconf-set-selections")
-        os.system("echo 'keyboard-configuration keyboard-configuration/options select' | sudo debconf-set-selections")
-        os.system("echo 'keyboard-configuration keyboard-configuration/ctrl_alt_bksp boolean false' | sudo debconf-set-selections")
-        os.system("echo 'keyboard-configuration keyboard-configuration/compose select No compose key' | sudo debconf-set-selections")
-        os.system("echo 'keyboard-configuration keyboard-configuration/toggle select No toggling' | sudo debconf-set-selections")
-
+        os.system("echo 'keyboard-configuration keyboard-configuration/xkb-keymap select us' | sudo debconf-set-selections")
+        os.system("echo 'keyboard-configuration keyboard-configuration/layoutcode string us' | sudo debconf-set-selections")
+        os.system("echo 'keyboard-configuration keyboard-configuration/modelcode string pc105' | sudo debconf-set-selections")
+        
         # Install XFCE4 and related packages
         os.system("apt install --assume-yes xfce4 desktop-base xfce4-terminal")
         os.system("bash -c 'echo \"exec /etc/X11/Xsession /usr/bin/xfce4-session\" > /etc/chrome-remote-desktop-session'")
@@ -67,22 +64,21 @@ class CRDSetup:
     
         # Bypass keyboard configuration
         os.system("echo 'XKBLAYOUT=\"us\"' | sudo tee /etc/default/keyboard")
-        os.system("sudo dpkg-reconfigure keyboard-configuration")
+        os.system("sudo dpkg-reconfigure --frontend=noninteractive keyboard-configuration")
 
         print("Installed XFCE4 Desktop Environment and set default keyboard layout!")
-
 
     @staticmethod
     def installGoogleChrome():
         subprocess.run(["wget", "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"])
         subprocess.run(["dpkg", "--install", "google-chrome-stable_current_amd64.deb"])
         subprocess.run(['apt', 'install', '--assume-yes', '--fix-broken'])
-        print("Google Chrome Installed !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-    
+        print("Google Chrome Installed!")
+
     @staticmethod
     def installTelegram():
         subprocess.run(["apt", "install", "--assume-yes", "telegram-desktop"])
-        print("Telegram Installed !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        print("Telegram Installed!")
 
     @staticmethod
     def changewall():
@@ -91,13 +87,13 @@ class CRDSetup:
         custom_wallpaper_path = os.path.join(current_directory, "xfce-verticals.png")
         destination_path = '/usr/share/backgrounds/xfce/'
         shutil.copy(custom_wallpaper_path, destination_path)
-        print("Wallpaper Changed !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-   
+        print("Wallpaper Changed!")
+
     @staticmethod
     def installQbit():
         subprocess.run(["sudo", "apt", "update"])
         subprocess.run(["sudo", "apt", "install", "-y", "qbittorrent"])
-        print("Qbittorrent Installed !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        print("Qbittorrent Installed!")
 
     @staticmethod
     def finish(user):
@@ -105,8 +101,6 @@ class CRDSetup:
             os.makedirs(f"/home/{user}/.config/autostart", exist_ok=True)
             link = "https://www.metatrader5.com/en/terminal/help/start_advanced/install_linux"
             colab_autostart = """[Desktop Entry]
-            print("Finalizing !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-
 Type=Application
 Name=Colab
 Exec=sh -c "sensible-browser {}"
