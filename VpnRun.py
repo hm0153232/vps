@@ -52,6 +52,9 @@ class CRDSetup:
         os.system("echo 'keyboard-configuration keyboard-configuration/model select Generic 101-key PC' | sudo debconf-set-selections")
         os.system("echo 'keyboard-configuration keyboard-configuration/variant select English (US)' | sudo debconf-set-selections")
         os.system("echo 'keyboard-configuration keyboard-configuration/options select' | sudo debconf-set-selections")
+        os.system("echo 'keyboard-configuration keyboard-configuration/ctrl_alt_bksp boolean false' | sudo debconf-set-selections")
+        os.system("echo 'keyboard-configuration keyboard-configuration/compose select No compose key' | sudo debconf-set-selections")
+        os.system("echo 'keyboard-configuration keyboard-configuration/toggle select No toggling' | sudo debconf-set-selections")
 
         # Install XFCE4 and related packages
         os.system("apt install --assume-yes xfce4 desktop-base xfce4-terminal")
@@ -67,6 +70,7 @@ class CRDSetup:
         os.system("sudo dpkg-reconfigure keyboard-configuration")
 
         print("Installed XFCE4 Desktop Environment and set default keyboard layout!")
+
 
     @staticmethod
     def installGoogleChrome():
