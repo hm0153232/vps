@@ -32,9 +32,9 @@ class CRDSetup:
         os.system("apt update")
         self.installCRD()
         self.installDesktopEnvironment()
-       # self.changewall()
-        #self.installGoogleChrome()
-       # self.installTelegram()
+        self.changewall()
+        self.installGoogleChrome()
+        self.installTelegram()
         self.installQbit()
         self.finish(user)
 
