@@ -45,22 +45,25 @@ class CRDSetup:
         subprocess.run(['apt', 'install', '--assume-yes', '--fix-broken'])
         print("Chrome Remoted Desktop Installed !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 
-    @staticmethod
-    def installDesktopEnvironment():
-        os.system("export DEBIAN_FRONTEND=noninteractive")
-        os.system("apt install --assume-yes xfce4 desktop-base xfce4-terminal")
-        os.system("bash -c 'echo \"exec /etc/X11/Xsession /usr/bin/xfce4-session\" > /etc/chrome-remote-desktop-session'")
-        os.system("apt remove --assume-yes gnome-terminal")
-        os.system("apt install --assume-yes xscreensaver")
-        os.system("sudo apt purge --assume-yes light-locker")
-        os.system("sudo apt install --reinstall xfce4-screensaver")
-        os.system("systemctl disable lightdm.service")
+@staticmethod
+def installDesktopEnvironment():
+    os.environ["DEBIAN_FRONTEND"] = "noninteractive"  # Set noninteractive mode
+    os.system("apt install --assume-yes xfce4 desktop-base xfce4-terminal")
+    os.system("bash -c 'echo \"exec /etc/X11/Xsession /usr/bin/xfce4-session\" > /etc/chrome-remote-desktop-session'")
+    os.system("apt remove --assume-yes gnome-terminal")
+    os.system("apt install --assume-yes xscreensaver")
+    os.system("sudo apt purge --assume-yes light-locker")
+    os.system("sudo apt install --reinstall xfce4-screensaver")
+    os.system("systemctl disable lightdm.service")
     
-    # Set default keyboard layout (e.g., US layout)
-      #  os.system("echo 'XKBLAYOUT=\"us\"' | sudo tee /etc/default/keyboard")
-       # os.system("sudo dpkg-reconfigure keyboard-configuration")
+    # Bypass keyboard configuration
+    os.system("echo 'XKBLAYOUT=\"us\"' | sudo tee /etc/default/keyboard")
+    os.system("sudo dpkg-reconfigure keyboard-configuration")
 
     print("Installed XFCE4 Desktop Environment and set default keyboard layout!")
+
+
+
 
     @staticmethod
     def installGoogleChrome():
