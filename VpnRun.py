@@ -61,11 +61,7 @@ class CRDSetup:
         os.system("sudo dpkg-reconfigure keyboard-configuration")
 
         print("Installed XFCE4 Desktop Environment and set default keyboard layout!")
-  
- installDesktopEnvironment()
-
-
-
+        
     @staticmethod
     def installGoogleChrome():
         subprocess.run(["wget", "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"])
