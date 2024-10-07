@@ -46,6 +46,8 @@ class CRDSetup:
         print("Chrome Remoted Desktop Installed !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 
     @staticmethod
+    import os
+
     def installDesktopEnvironment():
         os.environ["DEBIAN_FRONTEND"] = "noninteractive"  # Set noninteractive mode
         os.system("apt install --assume-yes xfce4 desktop-base xfce4-terminal")
@@ -61,6 +63,8 @@ class CRDSetup:
         os.system("sudo dpkg-reconfigure keyboard-configuration")
 
         print("Installed XFCE4 Desktop Environment and set default keyboard layout!")
+
+
         
     @staticmethod
     def installGoogleChrome():
