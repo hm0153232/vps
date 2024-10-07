@@ -62,7 +62,7 @@ class CRDSetup:
 
         print("Installed XFCE4 Desktop Environment and set default keyboard layout!")
   
-installDesktopEnvironment()
+ installDesktopEnvironment()
 
 
 
