@@ -61,7 +61,8 @@ class CRDSetup:
         os.system("sudo dpkg-reconfigure keyboard-configuration")
 
         print("Installed XFCE4 Desktop Environment and set default keyboard layout!")
-  installDesktopEnvironment()
+  
+installDesktopEnvironment()
 
 
 
