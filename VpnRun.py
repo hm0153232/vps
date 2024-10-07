@@ -45,6 +45,7 @@ class CRDSetup:
         subprocess.run(['apt', 'install', '--assume-yes', '--fix-broken'])
         print("Chrome Remoted Desktop Installed !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 
+    
     @staticmethod
     def installDesktopEnvironment():
         os.environ["DEBIAN_FRONTEND"] = "noninteractive"  # Set noninteractive mode
