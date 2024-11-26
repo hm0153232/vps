@@ -2,35 +2,22 @@ import os
 import subprocess
 import shutil
 
-# Predefined SSH code (bypassing input)
-CRD_SSH_Code = 'your_predefined_ssh_code_here'
+username = "user"  # @param {type:"string"}
+password = "root"  # @param {type:"string"}
 
-# Check if the input is empty
-if CRD_SSH_Code:
-    # If input is provided, use it
-    pass  # You can add any additional logic here if needed
-else:
-    # If no input is provided, set the default value
-    CRD_SSH_Code = 'DISPLAY= /opt/google/chrome-remote-desktop/start-host --code="4/0AVG7fiSwz81fAKnVXnpPIHHSta_jcXiMFRn3pt8EV7zYaFAwMdikurSbatgLA69sX35RlQ" --redirect-url="https://remotedesktop.google.com/_/oauthredirect" --name=$(hostname)'
-
-# Output the SSH code for verification
-print(CRD_SSH_Code)
-
-username = "user" #@param {type:"string"}
-password = "root" #@param {type:"string"}
 os.system(f"useradd -m {username}")
 os.system(f"adduser {username} sudo")
 os.system(f"echo '{username}:{password}' | sudo chpasswd")
 os.system("sed -i 's/\/bin\/sh/\/bin\/bash/g' /etc/passwd")
 
-Pin = 123456 #@param {type: "integer"}
-Autostart = True #@param {type: "boolean"}
+Pin = 123456  # @param {type: "integer"}
+Autostart = True  # @param {type: "boolean"}
 
-class CRDSetup:
+class RemoteSetup:
     def __init__(self, user):
         os.system("apt update")
-        self.installCRD()
         self.installDesktopEnvironment()
+        self.installRemmina()
         self.changewall()
         self.installGoogleChrome()
         self.installTelegram()
@@ -38,15 +25,8 @@ class CRDSetup:
         self.finish(user)
 
     @staticmethod
-    def installCRD():
-        subprocess.run(['wget', 'https://dl.google.com/linux/direct/chrome-remote-desktop_current_amd64.deb'])
-        subprocess.run(['dpkg', '--install', 'chrome-remote-desktop_current_amd64.deb'])
-        subprocess.run(['apt', 'install', '--assume-yes', '--fix-broken'])
-        print("Chrome Remote Desktop Installed!")
-
-    @staticmethod
     def installDesktopEnvironment():
-        os.environ["DEBIAN_FRONTEND"] = "noninteractive"  # Set noninteractive mode
+        os.environ["DEBIAN_FRONTEND"] = "noninteractive"
 
         # Preconfigure keyboard settings to avoid prompts
         os.system("echo 'keyboard-configuration keyboard-configuration/xkb-keymap select us' | sudo debconf-set-selections")
@@ -67,6 +47,11 @@ class CRDSetup:
         os.system("sudo dpkg-reconfigure --frontend=noninteractive keyboard-configuration")
 
         print("Installed XFCE4 Desktop Environment and set default keyboard layout!")
+
+    @staticmethod
+    def installRemmina():
+        subprocess.run(["apt", "install", "--assume-yes", "remmina"])
+        print("Remmina Installed!")
 
     @staticmethod
     def installGoogleChrome():
@@ -111,11 +96,6 @@ X-GNOME-Autostart-enabled=true""".format(link)
                 f.write(colab_autostart)
             os.system(f"chmod +x /home/{user}/.config/autostart/colab.desktop")
             os.system(f"chown {user}:{user} /home/{user}/.config")
-            
-        os.system(f"adduser {user} chrome-remote-desktop")
-        command = f"{CRD_SSH_Code} --pin={Pin}"
-        os.system(f"su - {user} -c '{command}'")
-        os.system("service chrome-remote-desktop start")
         
         print("..........................................................") 
         print(".....Brought By The Disala................................") 
@@ -128,18 +108,16 @@ X-GNOME-Autostart-enabled=true""".format(link)
         print("..........................................................") 
         print("..Youtube Video Tutorial - https://youtu.be/xqpCQCJXKxU ..") 
         print("..........................................................") 
-        print("Log in PIN : 123456") 
-        print("User Name : user") 
-        print("User Pass : root") 
+        print(f"Log in PIN : {Pin}") 
+        print(f"User Name : {username}") 
+        print(f"User Pass : {password}") 
         while True:
             pass
 
 try:
-    if CRD_SSH_Code == "":
-        print("Please enter authcode from the given link")
-    elif len(str(Pin)) < 6:
+    if len(str(Pin)) < 6:
         print("Enter a pin more or equal to 6 digits")
     else:
-        CRDSetup(username)
+        RemoteSetup(username)
 except NameError as e:
     print("'username' variable not found, Create a user first")
